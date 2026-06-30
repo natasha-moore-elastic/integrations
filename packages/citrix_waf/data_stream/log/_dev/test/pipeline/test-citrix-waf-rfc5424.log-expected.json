@@ -1,0 +1,80 @@
+{
+    "expected": [
+        {
+            "@timestamp": "2026-06-15T10:18:26.000Z",
+            "citrix": {
+                "cef_format": false,
+                "default_class": true,
+                "detail": "default APPFW_STARTURL 18309968 0 :  10.10.10.2 1334598-PPE3 EXAMPLEsessionID0000000000000000000000000000000001== waf_prof_webservers_3 Disallow Illegal URL: https://url.example/Microsoft-Server-ActiveSync?Cmd=Sync&User=username2%40domainname&DeviceId=0123456789ABCDEF0123456789ABCDEF&DeviceType=iPhone <not blocked>",
+                "device_event_class_id": "APPFW",
+                "extended": {
+                    "message": "10.10.10.2 1334598-PPE3 EXAMPLEsessionID0000000000000000000000000000000001== waf_prof_webservers_3 Disallow Illegal URL: https://url.example/Microsoft-Server-ActiveSync?Cmd=Sync&User=username2%40domainname&DeviceId=0123456789ABCDEF0123456789ABCDEF&DeviceType=iPhone <not blocked>"
+                },
+                "name": "APPFW_STARTURL"
+            },
+            "ecs": {
+                "version": "8.17.0"
+            },
+            "event": {
+                "id": "18309968",
+                "original": "<134>1 2026-06-15T10:18:26Z DEVICE APPFW 0-PPE-3 - - default APPFW_STARTURL 18309968 0 :  10.10.10.2 1334598-PPE3 EXAMPLEsessionID0000000000000000000000000000000001== waf_prof_webservers_3 Disallow Illegal URL: https://url.example/Microsoft-Server-ActiveSync?Cmd=Sync&User=username2%40domainname&DeviceId=0123456789ABCDEF0123456789ABCDEF&DeviceType=iPhone <not blocked>",
+                "severity": 0,
+                "timezone": "UTC"
+            },
+            "observer": {
+                "hostname": "DEVICE"
+            }
+        },
+        {
+            "@timestamp": "2026-06-22T14:34:06.000Z",
+            "citrix": {
+                "cef_format": true,
+                "cef_version": "0",
+                "detail": "CEF:0|Citrix|NetScaler|NS14.1|APPFW|APPFW_STARTURL|6|src=10.10.10.2 geolocation=Unknown spt=27699 method=POST request=https://url.local/Microsoft-Server-ActiveSync?Cmd\\=Ping&User\\=username%40domainname&DeviceId\\=FEDCBA9876543210FEDCBA9876543210&DeviceType\\=iPhone msg=Disallow Illegal URL. cn1=19960246 cn2=1458719 cs1=waf_prof_webservers_3 cs2=PPE3 cs3=EXAMPLEsessionID0000000000000000000000000000000002== cs4=ALERT cs5=2026 act=not blocked",
+                "device_event_class_id": "APPFW",
+                "device_product": "NetScaler",
+                "device_vendor": "Citrix",
+                "device_version": "NS14.1",
+                "extended": {
+                    "geolocation": "Unknown"
+                },
+                "name": "APPFW_STARTURL",
+                "ppe_id": "PPE3",
+                "profile_name": "waf_prof_webservers_3",
+                "session_id": "EXAMPLEsessionID0000000000000000000000000000000002==",
+                "severity": "ALERT"
+            },
+            "ecs": {
+                "version": "8.17.0"
+            },
+            "event": {
+                "action": "not blocked",
+                "id": "19960246",
+                "original": "<134>1 2026-06-22T14:34:06Z netscaler01 APPFW 0-PPE-3 - - CEF:0|Citrix|NetScaler|NS14.1|APPFW|APPFW_STARTURL|6|src=10.10.10.2 geolocation=Unknown spt=27699 method=POST request=https://url.local/Microsoft-Server-ActiveSync?Cmd\\=Ping&User\\=username%40domainname&DeviceId\\=FEDCBA9876543210FEDCBA9876543210&DeviceType\\=iPhone msg=Disallow Illegal URL. cn1=19960246 cn2=1458719 cs1=waf_prof_webservers_3 cs2=PPE3 cs3=EXAMPLEsessionID0000000000000000000000000000000002== cs4=ALERT cs5=2026 act=not blocked",
+                "severity": 6,
+                "timezone": "UTC"
+            },
+            "http": {
+                "request": {
+                    "id": "1458719",
+                    "method": "POST"
+                }
+            },
+            "message": "Disallow Illegal URL.",
+            "observer": {
+                "hostname": "netscaler01"
+            },
+            "source": {
+                "ip": "10.10.10.2",
+                "port": 27699
+            },
+            "url": {
+                "domain": "url.local",
+                "original": "https://url.local/Microsoft-Server-ActiveSync?Cmd\\=Ping&User\\=username%40domainname&DeviceId\\=FEDCBA9876543210FEDCBA9876543210&DeviceType\\=iPhone",
+                "path": "/Microsoft-Server-ActiveSync",
+                "query": "Cmd\\=Ping&User\\=username%40domainname&DeviceId\\=FEDCBA9876543210FEDCBA9876543210&DeviceType\\=iPhone",
+                "scheme": "https"
+            }
+        }
+    ]
+}

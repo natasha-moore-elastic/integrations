@@ -17,12 +17,16 @@ processors:
       field: event.original
       patterns:
         - '^%{SYSLOG_TIMESTAMP} %{LEVEL} %{IP:client.ip:ip} %{GREEDYDATA:citrix.detail}'
+        - '^%{RFC5424_HEADER}%{SPACE}%{GREEDYDATA:citrix.detail}'
         - '^%{GREEDYDATA:citrix.detail}'
       pattern_definitions:
         LEVEL: '<?%{IDENT:citrix.facility:keyword}\.%{IDENT:citrix.priority:keyword}>?'
         IDENT: '[a-zA-Z][a-zA-Z0-9]*'
         SYSLOG_TIMESTAMP: '(?:%{SYSLOGTIMESTAMP:_tmp.timestamp}|%{TIMESTAMP_ISO8601:_tmp.timestamp8601})'
         TIMESTAMP_ISO8601: '%{YEAR}-%{MONTHNUM}-%{MONTHDAY}[T ]%{HOUR}:?%{MINUTE}(?::?%{SECOND})?%{ISO8601_TIMEZONE:event.timezone}?'
+        RFC5424_TIMESTAMP: '%{YEAR}-%{MONTHNUM}-%{MONTHDAY}[T ]%{HOUR}:?%{MINUTE}(?::?%{SECOND})?%{ISO8601_TIMEZONE}?'
+        RFC5424_PRI: '<%{NONNEGINT}>'
+        RFC5424_HEADER: '%{RFC5424_PRI}%{NONNEGINT}%{SPACE}%{RFC5424_TIMESTAMP:_tmp.timestamp8601}%{SPACE}%{SYSLOGHOST:observer.hostname}%{SPACE}%{NOTSPACE:_tmp.rfc5424_appname}%{SPACE}%{NOTSPACE}%{SPACE}%{NOTSPACE}%{SPACE}(?:-|\[%{DATA}\])'
   - pipeline:
       tag: pipeline_89a9f5e0
       name: '{{ IngestPipeline "cef" }}'
